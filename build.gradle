@@ -36,5 +36,5 @@ tasks.named('test') {
 
 dependencies {
     // Spring Boot 3.x 버전을 사용 중이라면 아래 라이브러리를 추가합니다.
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
 }

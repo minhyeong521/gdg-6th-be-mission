@@ -1,5 +1,8 @@
 package gdg.hongik.mission.Controller;
 
+import gdg.hongik.mission.Dto.AddStockRequest;
+import gdg.hongik.mission.Dto.CreateProductRequest;
+import gdg.hongik.mission.Dto.GetProductResponse;
 import gdg.hongik.mission.Entity.Product;
 import gdg.hongik.mission.Service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -20,20 +23,22 @@ public class ProductAdminController {
 
     // 1. 상품 등록
     @PostMapping
-    public String createProduct(@RequestBody Product product) {
-        productService.createProduct(product);
+    public String createProduct(@RequestBody CreateProductRequest request) {
+        productService.createProduct(request);
         return "상품 등록 완료";
     }
 
     // 2. 재고 추가
     @PatchMapping("/stock")
-    public String addStock(@RequestBody Product request) {
-        return productService.addStock(request.getId(), request.getQuantity());
+    public String addStock(@RequestBody AddStockRequest request) {
+        return productService.addStock(request);
     }
 
     // 3. 상품 삭제
     @DeleteMapping
-    public List<Product> deleteProducts(@RequestBody List<Long> ids) {
+    // <GetProductResponse>dto를 사용해서 외부에 보여주는 정보를 제한한다
+    public List<GetProductResponse> deleteProducts(@RequestBody List<Long> ids) {
+
         return productService.deleteProducts(ids);
     }
 }
